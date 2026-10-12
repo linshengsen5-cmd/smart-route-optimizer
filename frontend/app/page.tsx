@@ -51,8 +51,10 @@ export default function Home() {
     if (!searchQuery.trim()) return;
     setSearchLoading(true);
 
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
     try {
-      const res = await fetch(`http://localhost:8000/api/geocode?query=${encodeURIComponent(searchQuery)}`);
+      const res = await fetch(`${API_BASE_URL}/api/geocode?query=${encodeURIComponent(searchQuery)}`);
       if (!res.ok) {
         alert("該当する場所が見つかりませんでした。別の名称を試してください。");
         return;
@@ -110,13 +112,13 @@ export default function Home() {
       })
     );
   };
-
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
   const handleOptimize = async () => {
     setLoading(true);
     setResult(null);
 
     try {
-      const res = await fetch("http://localhost:8000/api/optimize", {
+      const res = await fetch(`${API_BASE_URL}/api/optimize`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
