@@ -8,8 +8,8 @@ app = FastAPI(title="Smart Route Optimizer API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
+    allow_origin_regex="https://.*",  # すべてのHTTPSサイトからの接続を許可
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
