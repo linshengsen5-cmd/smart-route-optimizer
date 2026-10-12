@@ -150,6 +150,7 @@ export default function Home() {
     try {
       // 画面の見た目・日本語フォントをそのまま Canvas にキャプチャ
       const canvas = await html2canvas(element, {
+        // @ts-ignore
         scale: 2, // 高解像度（鮮明）
         useCORS: true,
         backgroundColor: "#ffffff",
